@@ -1,6 +1,8 @@
 const app = angular.module('MyApp', []);
 
 app.controller('MyController', ['$http', function($http){
+  const controller = this;
+
     this.createTodo = function(){
         $http({
             method:'POST',
@@ -15,4 +17,17 @@ app.controller('MyController', ['$http', function($http){
             console.log(error);
         });
     }
+
+    this.getTodos = function(){
+        $http({
+            method:'GET',
+            url: '/todos',
+        }).then(function(response){
+            controller.todos = response.data; //set value on success
+        }, function(){
+            console.log('error');
+        });
+    };
+
+    this.getTodos();
 }]);

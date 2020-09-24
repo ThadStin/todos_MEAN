@@ -13,5 +13,12 @@
             Complete: <input type="checkbox" ng-model="ctrl.complete"/>
             <input type="submit" value="Create New To Do Item"/>
         </form>
+        <ul>
+            <li
+                ng-repeat="todo in ctrl.todos"
+                ng-class="(todo.complete)?'complete':''">
+                    {{todo.description}}
+            </li>
+        </ul>
     </body>
 </html>
