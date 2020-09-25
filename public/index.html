@@ -5,6 +5,7 @@
         <title></title>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
         <script src="/js/app.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="/css/app.css">
     </head>
     <body ng-controller="MyController as ctrl">
         <form ng-submit="ctrl.createTodo()">
@@ -16,8 +17,10 @@
         <ul>
             <li
                 ng-repeat="todo in ctrl.todos"
-                ng-class="(todo.complete)?'complete':''">
+                ng-class="(todo.complete) ? 'complete' : 'incomplete'">
+                  <span ng-click="ctrl.toggleTodoComplete(todo);">
                     {{todo.description}}
+                  </span>
             </li>
         </ul>
     </body>

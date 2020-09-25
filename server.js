@@ -15,3 +15,7 @@ mongoose.connect('mongodb://localhost:27017/meancrud', { useNewUrlParser:true })
 mongoose.connection.once('open', () => {
     console.log('connected to mongoose');
 })
+
+// =============================================================================
+// To develop this entire app, have 1.mongod 2.mongo 3.nodemon running in terminal
+// =============================================================================
