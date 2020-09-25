@@ -3,6 +3,7 @@ const app = angular.module('MyApp', []);
 app.controller('MyController', ['$http', function($http){
   const controller = this;
 
+//CREATE TODOS
     this.createTodo = function(){
         $http({
             method:'POST',
@@ -12,12 +13,14 @@ app.controller('MyController', ['$http', function($http){
                 complete: this.complete
             }
         }).then(function(response){
+            controller.getTodos(); //updates list on submit
             console.log(response);
         }, function(error){
             console.log(error);
         });
     }
 
+//GET ALL TODOS
     this.getTodos = function(){
         $http({
             method:'GET',
@@ -30,20 +33,6 @@ app.controller('MyController', ['$http', function($http){
     };
 
     this.getTodos();
-
-//REFRESH TODOS AFTER CREATING
-    $http({
-      method: 'POST',
-      url: '/todos',
-      data: {
-        description: this.description,
-        complete: this.complete,
-      }
-    }).then(function(response) {
-        controller.getTodos();
-    }, function() {
-      console.log('error');
-    })
 
 // TOGGLE TODOS
     this.toggleTodoComplete = function(todo){
@@ -67,5 +56,18 @@ app.controller('MyController', ['$http', function($http){
             console.log('error');
         });
     }
+
+// DELETE TODOS
+    this.deleteTodo = function(todo) {
+      $http({
+        method: 'DELETE',
+        url: '/todos/' + todo._id,
+      }).then(function(response) {
+        controller.getTodos();
+      },function(error) {
+        console.log(error);
+      });
+    }
+
 
 }]);

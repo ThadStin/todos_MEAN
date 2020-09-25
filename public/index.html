@@ -16,11 +16,13 @@
         </form>
         <ul>
             <li
-                ng-repeat="todo in ctrl.todos"
-                ng-class="(todo.complete) ? 'complete' : 'incomplete'">
-                  <span ng-click="ctrl.toggleTodoComplete(todo);">
-                    {{todo.description}}
-                  </span>
+              ng-repeat="todo in ctrl.todos"
+              ng-class="(todo.complete) ? 'complete' : 'incomplete'">
+                <span ng-click="ctrl.toggleTodoComplete(todo);">
+                  {{todo.description}}
+                </span>
+                <button ng-click="ctrl.deleteTodo(todo)">Delete</button>
+
             </li>
         </ul>
     </body>
