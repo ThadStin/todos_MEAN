@@ -63,10 +63,29 @@ app.controller('MyController', ['$http', function($http){
         method: 'DELETE',
         url: '/todos/' + todo._id,
       }).then(function(response) {
-        controller.getTodos();
+          controller.getTodos();
       },function(error) {
-        console.log(error);
+          console.log(error);
       });
+    }
+
+// EDIT TODOS
+    this.editTodo = function(todo){
+        $http({
+            method:'PUT',
+            url: '/todos/' + todo._id,
+            data: {
+                description: this.updatedDescription,
+                complete: todo.complete
+            }
+        }).then(
+            function(response){
+                controller.getTodos();
+            },
+            function(error){
+              console.log(error);
+            }
+        );
     }
 
 
