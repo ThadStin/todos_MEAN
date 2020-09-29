@@ -81,6 +81,7 @@ app.controller('MyController', ['$http', function($http){
         }).then(
             function(response){
                 controller.getTodos();
+                controller.indexOfEditFormToShow = null;
             },
             function(error){
               console.log(error);
@@ -88,5 +89,5 @@ app.controller('MyController', ['$http', function($http){
         );
     }
 
-
+this.indexOfEditFormToShow = null;
 }]);

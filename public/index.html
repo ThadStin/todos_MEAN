@@ -16,13 +16,24 @@
         </form>
         <ul>
             <li
-              ng-repeat="todo in ctrl.todos"
-              ng-class="(todo.complete) ? 'complete' : 'incomplete'">
-              <!-- ============= DELETE BUTTON ================ -->
-                <span ng-click="ctrl.toggleTodoComplete(todo);">
+              ng-repeat="todo in ctrl.todos">
+                <span
+                  ng-class="(todo.complete) ? 'complete' : 'incomplete' "
+                  ng-click="ctrl.toggleTodoComplete(todo)">
                   {{todo.description}}
                 </span>
+                <!-- ============= DELETE BUTTON ================ -->
                 <button ng-click="ctrl.deleteTodo(todo)">Delete</button>
+                <!-- ============================================== -->
+                <!-- =========== LINK TO SHOW EDIT FORM =========== -->
+                <a
+                    ng-if="$index !== ctrl.indexOfEditFormToShow"
+                    href="#"
+                    ng-click="ctrl.indexOfEditFormToShow = $index">
+                        Edit This Todo
+                </a>
+                <form ng-if="$index === ctrl.indexOfEditFormToShow" ng-submit="ctrl.editTodo(todo);">
+                <!-- ========================================= -->
                 <!-- ============== EDIT FORM ================ -->
                 <form ng-submit="ctrl.editTodo(todo);">
                     <input type="text" ng-model="ctrl.updatedDescription" placeholder="description" />
