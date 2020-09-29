@@ -2,7 +2,8 @@ const app = angular.module('MyApp', []);
 
 app.controller('MyController', ['$http', function($http){
   const controller = this;
-
+  this.indexOfEditFormToShow = null;
+  
 //CREATE TODOS
     this.createTodo = function(){
         $http({
@@ -89,5 +90,5 @@ app.controller('MyController', ['$http', function($http){
         );
     }
 
-this.indexOfEditFormToShow = null;
+
 }]);

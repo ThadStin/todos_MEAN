@@ -8,38 +8,52 @@
         <link rel="stylesheet" href="/css/app.css">
     </head>
     <body ng-controller="MyController as ctrl">
+      <div>
         <form ng-submit="ctrl.createTodo()">
             <!-- {{ctrl.description}} - {{ctrl.complete}} -->
             <input ng-model="ctrl.description" type="text" placeholder="description"/>
             Complete: <input type="checkbox" ng-model="ctrl.complete"/>
             <input type="submit" value="Create New To Do Item"/>
         </form>
-        <ul>
-            <li
-              ng-repeat="todo in ctrl.todos">
-                <span
-                  ng-class="(todo.complete) ? 'complete' : 'incomplete' "
-                  ng-click="ctrl.toggleTodoComplete(todo)">
-                  {{todo.description}}
-                </span>
-                <!-- ============= DELETE BUTTON ================ -->
-                <button ng-click="ctrl.deleteTodo(todo)">Delete</button>
-                <!-- ============================================== -->
-                <!-- =========== LINK TO SHOW EDIT FORM =========== -->
-                <a
-                    ng-if="$index !== ctrl.indexOfEditFormToShow"
-                    href="#"
-                    ng-click="ctrl.indexOfEditFormToShow = $index">
-                        Edit This Todo
-                </a>
-                <form ng-if="$index === ctrl.indexOfEditFormToShow" ng-submit="ctrl.editTodo(todo);">
-                <!-- ========================================= -->
-                <!-- ============== EDIT FORM ================ -->
-                <form ng-submit="ctrl.editTodo(todo);">
-                    <input type="text" ng-model="ctrl.updatedDescription" placeholder="description" />
-                    <input type="submit" value="Update Description">
-                </form>
-            </li>
-        </ul>
+      </div>  
+        <!-- <ul> -->
+            <!-- <li -->
+              <div ng-repeat="todo in ctrl.todos">
+                <!-- ================= TODO ITEM ==================== -->
+                <div>
+                  <span
+                    ng-class="(todo.complete) ? 'complete' : 'incomplete' "
+                    ng-click="ctrl.toggleTodoComplete(todo)">
+                    {{todo.description}}
+                  </span>
+                </div>
+                <!-- ================================================ -->
+                  <!-- ============= DELETE BUTTON ================ -->
+                <div>
+                  <button ng-click="ctrl.deleteTodo(todo)">Delete</button>
+                </div>
+                  <!-- ============================================== -->
+                  <!-- =========== LINK TO SHOW EDIT FORM =========== -->
+                <div>
+                  <a
+                      ng-if="$index !== ctrl.indexOfEditFormToShow"
+                      href="#"
+                      ng-click="ctrl.indexOfEditFormToShow = $index">
+                          Edit This Todo
+                  </a>
+                  <form ng-if="$index === ctrl.indexOfEditFormToShow"
+                        ng-submit="ctrl.editTodo(todo);">
+                <!-- </div> -->
+                  <!-- ========================================= -->
+                  <!-- ============== EDIT FORM ================ -->
+                <!-- <div> -->
+                  <form ng-submit="ctrl.editTodo(todo);">
+                      <input type="text" ng-model="ctrl.updatedDescription" placeholder="description" />
+                      <input type="submit" value="Update Description">
+                  </form>
+                </div>
+              </div>
+            <!-- </li> -->
+        <!-- </ul> -->
     </body>
 </html>
