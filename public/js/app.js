@@ -2,8 +2,7 @@ const app = angular.module('MyApp', []);
 
 app.controller('MyController', ['$http', function($http){
   const controller = this;
-  this.indexOfEditFormToShow = null;
-  
+
 //CREATE TODOS
     this.createTodo = function(){
         $http({
@@ -16,6 +15,7 @@ app.controller('MyController', ['$http', function($http){
         }).then(function(response){
             controller.getTodos(); //updates list on submit
             console.log(response);
+            controller.description = null; //resets text field
         }, function(error){
             console.log(error);
         });
@@ -42,7 +42,7 @@ app.controller('MyController', ['$http', function($http){
             newCompleteValue = false;
         } else {
             newCompleteValue = true;
-        }
+        } // with html and css toggles line-through if completed, no line if incomplete
 
         $http({
             method:'PUT',
@@ -82,7 +82,8 @@ app.controller('MyController', ['$http', function($http){
         }).then(
             function(response){
                 controller.getTodos();
-                controller.indexOfEditFormToShow = null;
+                controller.indexOfEditFormToShow = null; // hides form
+                controller.updatedDescription = null; //resets text field
             },
             function(error){
               console.log(error);

@@ -15,10 +15,11 @@
             Complete: <input type="checkbox" ng-model="ctrl.complete"/>
             <input type="submit" value="Create New To Do Item"/>
         </form>
-      </div>  
-        <!-- <ul> -->
-            <!-- <li -->
-              <div ng-repeat="todo in ctrl.todos">
+      </div>
+      <main>
+        <ul>
+            <li ng-repeat="todo in ctrl.todos">
+
                 <!-- ================= TODO ITEM ==================== -->
                 <div>
                   <span
@@ -41,19 +42,20 @@
                       ng-click="ctrl.indexOfEditFormToShow = $index">
                           Edit This Todo
                   </a>
-                  <form ng-if="$index === ctrl.indexOfEditFormToShow"
-                        ng-submit="ctrl.editTodo(todo);">
+
                 <!-- </div> -->
                   <!-- ========================================= -->
                   <!-- ============== EDIT FORM ================ -->
                 <!-- <div> -->
-                  <form ng-submit="ctrl.editTodo(todo);">
+                  <form ng-if="$index === ctrl.indexOfEditFormToShow"
+                        ng-submit="ctrl.editTodo(todo);">
                       <input type="text" ng-model="ctrl.updatedDescription" placeholder="description" />
                       <input type="submit" value="Update Description">
                   </form>
                 </div>
-              </div>
-            <!-- </li> -->
-        <!-- </ul> -->
+
+            </li>
+        </ul>
+      <main>
     </body>
 </html>
