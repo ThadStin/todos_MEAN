@@ -1,3 +1,60 @@
 .complete {
   text-decoration: line-through;
 }
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  padding: 5%;
+  background-color: #d9dede
+}
+main {
+  margin: auto;
+  padding-top: 1%;
+  border: 5px solid black;
+}
+
+.todos {
+  display: flex;
+  padding: 2% 2%;
+  border-bottom: 2px solid black;
+}
+
+.description {
+  padding-right: 1%;
+  width: 55%;
+}
+
+.delete {
+  padding-right: 1%;
+  width:10%
+}
+
+.new {
+  text-align: right;
+  height: 75%;
+  width: 75%;
+  margin: auto;
+  padding-bottom: 3%;
+  align-content: center;
+}
+
+.editForm {
+  width: 35%;
+  padding-right: 1%;
+}
+
+.check {
+  margin-right: 3%;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+span {
+  vertical-align: bottom;
+}
+
+h1 {
+  text-align: center;
+}

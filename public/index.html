@@ -3,39 +3,46 @@
     <head>
         <meta charset="utf-8">
         <title></title>
+        <!-- =============== ANGULAR ================= -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
+        <!-- =========== BOOTSTRAP ===============-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- ============= APP.JS ================ -->
         <script src="/js/app.js" charset="utf-8"></script>
+        <!-- ============ APP.CSS ================ -->
         <link rel="stylesheet" href="/css/app.css">
     </head>
+
     <body ng-controller="MyController as ctrl">
-      <div>
+      <!-- =================== NEW TODO FORM ======================= -->
+      <h1>TO DO LIST</h1>
+      <div class="new">
         <form ng-submit="ctrl.createTodo()">
             <!-- {{ctrl.description}} - {{ctrl.complete}} -->
-            <input ng-model="ctrl.description" type="text" placeholder="description"/>
-            Complete: <input type="checkbox" ng-model="ctrl.complete"/>
-            <input type="submit" value="Create New To Do Item"/>
+            <input ng-model="ctrl.description" type="text" placeholder="what do you need to do?"
+                  class="form-control form-control-lg"/>
+            <br>
+            <span>Complete: <input type="checkbox" ng-model="ctrl.complete" class="check"/></span>
+            <input type="submit" value="Create New To Do Item" class="btn btn-success"/>
         </form>
       </div>
+      <!-- ======================================================== -->
       <main>
-        <ul>
-            <li ng-repeat="todo in ctrl.todos">
-
+        <!-- <ul>
+            <li ng-repeat="todo in ctrl.todos"> -->
+              <div ng-repeat="todo in ctrl.todos" class="todos">
                 <!-- ================= TODO ITEM ==================== -->
-                <div>
-                  <span
+                <div class="description">
+                  <strong><span
                     ng-class="(todo.complete) ? 'complete' : 'incomplete' "
                     ng-click="ctrl.toggleTodoComplete(todo)">
                     {{todo.description}}
-                  </span>
+                  </span></strong>
                 </div>
                 <!-- ================================================ -->
-                  <!-- ============= DELETE BUTTON ================ -->
-                <div>
-                  <button ng-click="ctrl.deleteTodo(todo)">Delete</button>
-                </div>
-                  <!-- ============================================== -->
+
                   <!-- =========== LINK TO SHOW EDIT FORM =========== -->
-                <div>
+                <div class="editForm">
                   <a
                       ng-if="$index !== ctrl.indexOfEditFormToShow"
                       href="#"
@@ -49,13 +56,19 @@
                 <!-- <div> -->
                   <form ng-if="$index === ctrl.indexOfEditFormToShow"
                         ng-submit="ctrl.editTodo(todo);">
-                      <input type="text" ng-model="ctrl.updatedDescription" placeholder="description" />
-                      <input type="submit" value="Update Description">
+                      <input type="text" ng-model="ctrl.updatedDescription" placeholder="description" class="form-control form-control-lg"/>
+                      <input type="submit" value="Update Description" class="btn btn-primary">
                   </form>
                 </div>
-
-            </li>
-        </ul>
-      <main>
+                <!-- ============= DELETE BUTTON ================ -->
+              <div class="delete">
+                <button ng-click="ctrl.deleteTodo(todo)" class="btn btn-danger">Delete</button>
+              </div>
+                <!-- ============================================== -->
+              </div>
+            <!-- </li>
+        </ul> -->
+      </main>
+      <small>* click on item to mark out as you complete task</small>
     </body>
 </html>
